@@ -3,7 +3,8 @@
 function download() {
     echo "try to get the version: ${1} ..."
     rm json.hpp
-    wget -c "https://github.com/nlohmann/json/releases/download/v${1}/json.hpp"
+    local latest_tag="$(curl "https://api.github.com/repos/nlohmann/json/tags" | jq -r '.[0].name')"
+    wget -c "https://github.com/nlohmann/json/releases/download/v${latest_tag}/json.hpp"
 }
 
-[[ -n "$1" ]] && download ${1} || echo -e "syntax: ${0} version\nsample: $> ${0} 2.1.2"
+download ${1}
