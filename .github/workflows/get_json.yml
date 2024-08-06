@@ -13,8 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: get specified version, currently 3.11.3
-      run: ./get_version.sh 3.11.3
+    - name: get latest version
+      run: ./get_version.sh
 
     - name: Push
       uses: s0/git-publish-subdir-action@develop
